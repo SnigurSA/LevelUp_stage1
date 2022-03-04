@@ -2,15 +2,18 @@
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
+#include <time.h>
 using namespace std;
 int main()
 {
+    srand(time(0));
     HANDLE h = GetStdHandle (STD_OUTPUT_HANDLE);
-    COORD c = {6, 4};
+    COORD c, c1;
 
 //Рисуем границы игрового поля
-   COORD c1 = {5, 3};
-   SetConsoleCursorPosition (h, c1);
+   c.X = 5;
+   c.Y = 3;
+   SetConsoleCursorPosition (h, c);
 
    printf("*");
 
@@ -18,14 +21,15 @@ int main()
        printf ("-");
    printf("*");
 
-   COORD c2 = {5, 4};
-   SetConsoleCursorPosition (h, c2);
+   c.X = 5;
+   c.Y = 4;
+   SetConsoleCursorPosition (h, c);
 
    for (int i=1; i!= 30; ++i)
        {
        printf("|");
-       c2.Y=c2.Y+1;
-       SetConsoleCursorPosition (h, c2);
+       c.Y=c.Y+1;
+       SetConsoleCursorPosition (h, c);
        }
     printf("*");
 
@@ -33,19 +37,19 @@ int main()
         printf ("-");
     printf("*");
 
-    COORD c3 = {55, 4};
-    SetConsoleCursorPosition (h, c3);
+    c.X = 55;
+    c.Y = 4;
+    SetConsoleCursorPosition (h, c);
     for (int i=1; i!= 30; ++i)
         {
         printf("|");
-        c3.Y=c3.Y+1;
-        SetConsoleCursorPosition (h, c3);
+        c.Y=c.Y+1;
+        SetConsoleCursorPosition (h, c);
         }
 //задаем координаты цели
-    //int X1, Y1;
     c1.X = rand() % 48 +6;
     c1.Y = rand() % 25 +4;
-    //COORD c4 = (X1, Y1);
+
     SetConsoleCursorPosition (h, c1);
     printf("0");
 
