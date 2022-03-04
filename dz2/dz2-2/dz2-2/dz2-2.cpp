@@ -1,11 +1,8 @@
-#include <iostream>
-#include <math.h> // подключаем math.h
-//using namespace std; отключил элементы С++
-double R, a, d, SR, Sa, Sd;
-int main()
-{
-    while (1)
 
+#include <stdio.h>
+#include "func2-2.h"
+double R, a, d;
+int main()
 {
   printf("Vvedite radius kruga R=");
   scanf("%lf", &R);
@@ -16,12 +13,7 @@ int main()
   printf("Vvedite dlinu storony kvadrata d=");
   scanf("%lf", &d);
 
-  SR = pow(R,2) * M_PI;
-  Sa = pow(a,2) * sqrt(3) / 4;
-  Sd = pow(d,2);
-  printf(" SR = %lf Sa = %lf Sd = %lf\n ", SR, Sa, Sd);
-  SR > Sa ? (SR > Sd ? printf("Ploshad kruga naibolshaya \n ") : printf("Ploshad kvadrata naibolshaya \n "))
-          : (Sa > Sd ? printf("Ploshad treugolnika naibolshaya \n ") : printf("Ploshad kvadrata naibolshaya \n "));
- }
+  func2_2(R, a, d);
+
 }
 
