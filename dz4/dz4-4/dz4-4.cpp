@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include "../dz4-3/print_qmatr.h"
+#include "func4-4.h"
 
 
 int main()
@@ -27,14 +29,21 @@ int main()
           }
    /**/
    printf("vyvod matritsy \n");      //вывод на экран матрицы А
-   for(int i = 0; i < size; ++i)
+
+   print_qmatr(size, &A[0][0]);
+
+   /*for(int i = 0; i < size; ++i)
        {
            for(int j=0; j < size; ++j)
                printf("  %d ", A[i][j]);
 
            printf("\n");
        }
+   */
 
+
+
+/*
    int X = size - 1;
    int Y = size - 1;
    int Sum = 0;
@@ -46,7 +55,11 @@ int main()
           Y--;
       }
 
+   printf("Sum= %d \n", Sum);   //вывод на экран суммы
+*/
 
-   printf("Sum= %d \n", Sum);      //вывод на экран суммы
+
+
+   printf("Sum= %d \n", func4_4(size,&A[0][0]));    //вывод на экран суммы через функцию
 
 }
