@@ -1,7 +1,7 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-extern int Start_Field[21][12], Curent_Field[21][12], check[4];
+extern int Start_Field[22][12], Curent_Field[22][12], check[4];
 
 void print_field(int *mass);
 bool intercept(int *field, int *figure, int number_figure, int number_position, int X, int Y);

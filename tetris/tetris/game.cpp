@@ -28,7 +28,7 @@ void newgame(void)
 void savegame(void)
 {
     FILE* file = fopen("tetris.txt", "w");
-    for (int i = 0; i < 21; ++i)
+    for (int i = 0; i < 22; ++i)
         for (int j = 0; j < 12; ++j)
         {
             fprintf(file, "%d\n", Curent_Field[i][j]);
@@ -54,13 +54,13 @@ void nosavinggame(void)
     newgame();
 }
 
-void contgame(void /*int *field, int pos, int cf, int nf, int nextpos*/)
+void contgame(void)
 {
 
 
     int u;
     FILE *file;
-    int c[259];
+    int c[271];
 
     if ((file=fopen("tetris.txt","r+")) == NULL)
         nosavinggame();
@@ -74,15 +74,15 @@ void contgame(void /*int *field, int pos, int cf, int nf, int nextpos*/)
         else
         {
             rewind(file);
-            for(int i = 0;i < 258; i++)
+            for(int i = 0;i < 270; i++)
                 fscanf(file, "%d", &c[i]);
             memcpy(Curent_Field, c, sizeof(Start_Field));
-            position = c[252];
-            current_f = c[253];
-            next_f = c[254];
-            next_position = c[255];
-            score = c[256];
-            level = c[257];
+            position = c[264];
+            current_f = c[265];
+            next_f = c[266];
+            next_position = c[267];
+            score = c[268];
+            level = c[269];
             fclose(file);
         }
     }
@@ -92,8 +92,6 @@ void contgame(void /*int *field, int pos, int cf, int nf, int nextpos*/)
 // функция увеличения счета.
 int dscore(int K)
 {
-   //int ds;
-
    switch ( K ) //определяем величину увеличения счета в зависимости от количества полных рядов
    {
    case 0:
@@ -129,8 +127,8 @@ bool level_up(int score, int* level)
 State game(void)
 {
 
-    halfdelay(1);         //Устанавливаем ограничение по времени ожидания getch() в 0.1 сек
-
+    //halfdelay(1);         //Устанавливаем ограничение по времени ожидания getch() в 0.1 сек
+    //nodelay(stdscr, TRUE);  //отменяем ожидание нажатия клавиши функцией getch()
 
     const int next_y = 6, next_x = 25;
 
@@ -146,7 +144,6 @@ State game(void)
     mvvline(2,10,7,20);      // устанавливает новую позицию и рисует вертикальную линию, используя атрибуированный символ и max. n длину символов
     mvhline(22,10,7,12);     //устанавливает новую позицию рисует горизонтальную линию, используя атрибуированный символ и max. n длину символов
     mvvline(2,21,7,20);     // устанавливает новую позицию и рисует вертикальную линию, используя атрибуированный символ и max. n длину символов
-    //attroff(COLOR_PAIR(2)); //отключаем цветовую пару 2
 
     // добавляем надпись NEXT над полем отображения следующего элемента
     attron(COLOR_PAIR(1)); //включаем цветовую пару 1: черный фон,бирюзовый символ
@@ -203,7 +200,7 @@ State game(void)
                 if (trigger > accel)
                     key = getch();
                 else
-                    //keypad(stdscr, false);
+
                     key = 0;
 
                 switch ( key )
@@ -213,6 +210,7 @@ State game(void)
                     {
                         erase_figure(&Allfigures[0][0][0], current_f, position, x, y);
                         --x;
+
                         attron(COLOR_PAIR(4));
                         print_figure(&Allfigures[0][0][0], current_f, position, x, y);
                         attroff(COLOR_PAIR(4));
